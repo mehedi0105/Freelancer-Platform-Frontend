@@ -175,27 +175,6 @@ const handlemyOrder = () => {
 }
 
 
-const DashBord = () => {
-    const parent = document.getElementById("my-job")
-    if (parent.innerHTML != "") {
-        parent.innerHTML = "";
-    }
-    const div = document.createElement("div")
-    div.innerHTML = `
-    <div class="row">
-        <div class="col-8">
-            <img src="./images/sellerimg1.png" width="100%" alt="">
-        </div>
-        <div class="col-4">
-           <img src="./images/sellerimg2.png" width="100%" alt="">
-        </div>
-    </div>
-    `
-    parent.appendChild(div)
-}
-
-DashBord()
-
 const myReveiws = () => {
     const parent = document.getElementById("my-job")
     if (parent.innerHTML != "") {
@@ -227,3 +206,147 @@ const myReveiws = () => {
 
     // parent.appendChild(div)
 }
+
+const DashBord = () => {
+    const comapany_name = localStorage.getItem("user_id");
+    let total_job = 0;
+    fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach(job => {
+                if (job.comapany_name == comapany_name) {
+                    // console.log(total_job)
+                    total_job++;
+                }
+            });
+            // console.log()
+            localStorage.setItem("total_job", total_job);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    const total_jo = localStorage.getItem("total_job")
+    const parent = document.getElementById("my-job")
+    if (parent.innerHTML != "") {
+        parent.innerHTML = "";
+    }
+    const div = document.createElement("div")
+    div.innerHTML = `
+    <a href="./post.html" class="btn text-white fw-medium rounded p-2 ms-auto mb-4"
+                    style="background-color: #22be0d; width: 120px;">
+                    Post a
+                    Job</a>
+                <div class="dashbord-top d-flex gap-3">
+                    <div
+                        class="w-25 p-4 d-flex align-items-center dashobard-widget justify-content-between bg-white rounded-4">
+                        <div>
+                            <h3 class="dashboard-widget-title fw-bold text-dark">
+                                $00
+                            </h3>
+                            <p class="text text-dark">Total balance</p>
+                        </div>
+                        <div class="dashboard-widget-icon">
+                            <img src="./images/balance.png" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="w-25 p-4 d-flex align-items-center dashobard-widget justify-content-between bg-white rounded-4">
+                        <div>
+                            <h3 class="dashboard-widget-title fw-bold text-dark">
+                               ${total_jo}
+                            </h3>
+                            <p class="text-18 text-dark">Total Job</p>
+                        </div>
+                        <div class="dashboard-widget-icon">
+                            <img src="./images/job.png" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="w-25 p-4 d-flex align-items-center dashobard-widget justify-content-between bg-white rounded-4">
+                        <div>
+                            <h3 class="dashboard-widget-title fw-bold text-dark">
+                               00
+                            </h3>
+                            <p class="text text-dark">Complete Order</p>
+                        </div>
+                        <div class="dashboard-widget-icon">
+                            <img src="./images/completeorder.png" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="w-25 p-4 d-flex align-items-center dashobard-widget justify-content-between bg-white rounded-4">
+                        <div>
+                            <h3 class="dashboard-widget-title fw-bold text-dark">
+                                00
+                            </h3>
+                            <p class="text-18 text-dark">Complete Order</p>
+                        </div>
+                        <div class="dashboard-widget-icon">
+                            <img src="./images/activeorder.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="dashbord-bootom mt-4">
+                    <h2>Latest Jobs</h2>
+                    <div class="w-100 mt-3">
+                        <table class="table align-middle mb-0 bg-white">
+                            <thead class="rounded" style="background-color: rgba(34, 190, 13, 0.2);">
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Posted</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashbord-table">
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="total-job"></div>
+                <div class="Complete-Order"></div>
+                <div class="Active-Order"></div>
+    `
+    parent.appendChild(div)
+    DashBordTable(comapany_name)
+    localStorage.removeItem("total_job");
+}
+
+const DashBordTable = (comapany_name) => {
+    const parent = document.getElementById("dashbord-table");
+    fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
+        .then((res) => res.json())
+        .then((data) => {
+            data.forEach(job => {
+                if (job.comapany_name == comapany_name) {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                    
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p>${job.title}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">${job.salary}$</p>
+                        </td>
+                        <td>
+                            Active
+                        </td>
+                        <td>${new Date(job.created_at).toLocaleDateString()}</td>
+                    
+                    `
+                    parent.appendChild(tr);
+                }
+            });
+
+        })
+}
+
+DashBord()
