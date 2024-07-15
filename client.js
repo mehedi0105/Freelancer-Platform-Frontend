@@ -12,7 +12,7 @@ const handleAddJob = (event) => {
         salary: formData.get('budget'),
         description: formData.get('description'),
     }
-    // console.log(AddJobFormData)
+ 
     fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/", {
         method: "POST",
         headers: {
@@ -63,14 +63,7 @@ const handlemyPost = () => {
             console.error(error);
         });
 }
-// handlemyPost()
 
-{/* <div class="card text-center">
-    <div class="card-body">
-        <h5 class="card-title">$52</h5>
-        <p class="card-text">Total Balance</p>
-    </div>
-</div> */}
 
 
 
@@ -106,12 +99,7 @@ const handlePassword = () => {
 
 }
 
-{/* <div class="container update-password-container">
-    
-    <div class="image-section">
-        <img src="https://via.placeholder.com/400" alt="Placeholder Image">
-    </div>
-</div> */}
+
 
 const handlemyOrder = () => {
     const user_name = localStorage.getItem("user_id");
