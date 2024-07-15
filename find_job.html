@@ -77,7 +77,14 @@
         </footer>
 
     </div>
-
+    <script>
+        const handlePost = (id) => {
+            // alert(id)
+            localStorage.setItem('job_id', id);
+            window.location.href = "job_details.html";
+            // console.log(id)
+        }
+    </script>
     <script src="./app.js"></script>
     <script src="./auth.js"></script>
     <script src="./navbar.js"></script>
