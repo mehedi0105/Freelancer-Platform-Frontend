@@ -72,12 +72,7 @@ handlemyPost()
     </div>
 </div> */}
 
-const handlePost = (id) => {
-    // alert(id)
-    localStorage.setItem('job_id', id);
-    window.location.href = "job_details.html";
-    // console.log(id)
-}
+
 
 const handlePassword = () => {
     // alert()
