@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: white;">
+    <div id="navbar-container"></div>
+    <div class="find-job-container container">
+        <div class="banner">
+            <img src="images/banner1.jpg" class="mb-5" width="100%" height="200px" alt="">
+        </div>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-3 filter-section border-bottom" id="filter-section">
+                    <div id="categories">
+                        <h5 onclick="handleallJob()" style="cursor: pointer;;">Category</h5>
+                    </div>
+
+                    <div>
+
+                        <h5>Price</h5>
+                        <form action="" id="filter-form" onsubmit="salaryFilter(event)">
+                            <div class="form-group">
+                                <label for="minSalary">Minimum Salary</label>
+                                <input type="number" class="form-control" step="0.01" id="minSalary" name="minSalary"
+                                    placeholder="Enter minSalary salary" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="maxSalary">Maximum Salary</label>
+                                <input type="number" class="form-control" step="0.01" id="maxSalary" name="maxSalary"
+                                    placeholder="Enter maximum salary" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Filter</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-9" id="show-job"></div>
+            </div>
+        </div>
+    </div>
+    <div class=" my-5">
+
+        <footer class="text-center text-lg-start" style="background-color: #db6930;">
+            <div class="container d-flex justify-content-center py-5">
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright:
+                <a class="text-white" href="#">MDmehedihasan.com</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./auth.js"></script>
+    <script src="./navbar.js"></script>
+    <script src="./freelancer.js"></script>
+    <script src="./client.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .job-header .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .job-header .left-section img {
+            margin-right: 10px;
+        }
+
+        .job-header .right-section {
+            text-align: right;
+        }
+
+        .job-content {
+            margin-bottom: 20px;
+        }
+
+        .job-content h5 {
+            margin-top: 20px;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .btn-send {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f7f5f0;">
+    <div id="navbar-container"></div>
+    <div class="container mt-5" id="details-container"></div>
+    <div id="applyNow">
+
+    </div>
+
+    <div id="proposalList" class="container">
+        <h5>Proposal List: </h5>
+    </div>
+    <!-- <div class="card">
+            
+        </div> -->
+    <div class=" my-5">
+
+        <footer class="text-center text-lg-start" style="background-color: #db6930;">
+            <div class="container d-flex justify-content-center py-5">
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #54456b;">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright:
+                <a class="text-white" href="#">MDmehedihasan.com</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+    </div>
+    <script>
+        window.onload = () => {
+            const id = localStorage.getItem("job_id");
+            const Company = localStorage.getItem("username");
+            const user_type = localStorage.getItem("user_type");
+            const parent = document.getElementById("details-container");
+            // console.log(parent)
+            if (parent.innerHTML != "") {
+                parent.innerHTML = "";
+            }
+            if (user_type == "Freelancer") {
+                fetch(`https://freelancer-platform-api.onrender.com/buyer/job_details/${id}/`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        const div = document.createElement("div")
+                        div.classList.add("card", "details-card");
+                        div.innerHTML = `
+                            <div class="card-body">
+                                <div class="job-header">
+                                <div class="left-section">
+                                    <img src="https://via.placeholder.com/50" alt="Company Logo" class="img-fluid">
+                                <div>
+                                <h5>${Company}</h5>
+                                <p><small>created: ${new Date(data.created_at).toLocaleDateString()}</small></p>
+                                </div>
+                                </div>
+                                <div class="right-section">
+                                    <button class="btn btn-success mb-2" onclick="Apply('${id}')">Apply Now</button>
+                                    <h4>${data.salary}$</h4>
+                                </div>
+                                </div>
+                                <div class="job-content">
+                                    <h5>${data.title}</h5>
+                                    <h5>Job Description</h5>
+                                    <p>${data.description}</p>
+                                </div>
+                            </div>
+                        `
+                        parent.appendChild(div)
+                        localStorage.removeItem("id")
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            } else {
+                fetch(`https://freelancer-platform-api.onrender.com/buyer/job_details/${id}/`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        const div = document.createElement("div")
+                        div.classList.add("card", "details-card");
+                        div.innerHTML = `
+                            <div class="card-body">
+                                <div class="job-header">
+                                <div class="left-section">
+                                    <img src="https://via.placeholder.com/50" alt="Company Logo" class="img-fluid">
+                                <div>
+                                h5>${Company}</h5>
+                                <p><small>created: ${new Date(data.created_at).toLocaleDateString()}</small></p>
+                                </div>
+                                </div>
+                                <div class="right-section">
+                                    <button class="btn btn-success mb-2">See Proposal List</button>
+                                    <h4>${data.salary}$</h4>
+                                </div>
+                                </div>
+                                <div class="job-content">
+                                    <h5>${data.title}</h5>
+                                    <h5>Job Description</h5>
+                                    <p>${data.description}</p>
+                                </div>
+                            </div>
+                        `
+                        parent.appendChild(div)
+                        localStorage.removeItem("id")
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+
+                const proppsal = document.getElementById("proposalList");
+
+                fetch("https://freelancer-platform-api.onrender.com/freelancer/poposal/")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        data.forEach(element => {
+                            const div = document.createElement("div");
+                            div.classList.add("card", "job-card", "w-100");
+                            div.classList.add("card", "job-card", "col-md-4", "mb-4");
+                            div.innerHTML = `
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="job-details">
+                                <h5 class="card-title">Freelancer ID: ${element.freelancer}</h5>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-clock"></i> Proposal sent: ${new Date(element.created_at).toLocaleDateString()}
+                                    <span class="mx-2">•</span>
+                                </p>
+                                <p class="card-text">${element.proposal_post.slice(0, 200)}...</p>
+                                <div class="d-flex flex-wrap">
+                                ${element.is_accepted === false ? `<button onclick="ProposalAccept('${element.id}','${element.job}','${element.freelancer}','${element.proposal_post}')" <button class="btn btn-warning w-50">Accept Proposal</button>    
+                               ` : `
+                                    <div class="d-flex gap-3">
+                                        <button class="btn btn-warning">Completed work</button>
+                                        <button onclick="saveImportantData('${element.freelancer}','${element.job}')" class="btn btn-warning">Review Now</button>
+                                    </div>`}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                            proppsal.appendChild(div);
+
+
+                        });
+                    })
+            }
+        }
+
+        const Apply = (id) => {
+            localStorage.setItem("job_id", id)
+            const parent = document.getElementById("applyNow");
+            if (parent.innerHTML != "") {
+                parent.innerHTML = "";
+            }
+
+            const div = document.createElement("div");
+            div.classList.add("contact-form", "container");
+
+            alert("Check bellow this page and submit your Proposal")
+            div.innerHTML = `
+                <h2>Send Your Proposal</h2>
+                <form id="ProposalForm" onsubmit="handleProposal(event)">
+                    <div class="form-group">
+                        <label for="message">Cover Letter</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-send">Submit a Proposal</button>
+                </form>
+            `
+            parent.appendChild(div);
+
+        }
+
+        const handleProposal = (event) => {
+            event.preventDefault();
+            const form = document.getElementById("ProposalForm");
+            const formData = new FormData(form);
+
+            const message = formData.get("message");
+            const id = localStorage.getItem("job_id")
+            const freelancer = localStorage.getItem("user_id")
+            const ProposalForm = {
+
+                proposal_post: message,
+                is_accepted: false,
+                job: id,
+                freelancer: freelancer,
+            }
+            console.log(message);
+
+            fetch("https://freelancer-platform-api.onrender.com/freelancer/poposal/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(ProposalForm),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    alert("Your Proposal Submited Successfuly");
+                    // console.log(data)
+                    window.location.href = "freelancer.html";
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+        }
+    </script>
+    <script src="./app.js"></script>
+    <script src="./auth.js"></script>
+    <script src="./navbar.js"></script>
+    <script src="./propojal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

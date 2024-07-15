@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <div class="d-flex flex-wrap pe-5 ps-5">
+        <div class="sidebar col-md-2">
+            <!-- <a href="./client.html" style="cursor: pointer;">Dashboard</a> -->
+            <a onclick="handlemyPost()" style="cursor: pointer;">My Job</a>
+            <a href="./post.html" style="cursor: pointer;">Post a Job</a>
+            <a onclick="handlemyOrder()" style="cursor: pointer;">My Orders</a>
+            <a onclick="handlePassword()" style="cursor: pointer;">Change Password</a>
+            <a href="#" onclick="handleLogOut()" style="cursor: pointer;">Logout</a>
+        </div>
+        <div class="content col-md-10">
+            <h2>Dashboard</h2>
+            <div class="row" id="my-job">
+
+                <!-- <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">$52</h5>
+                        <p class="card-text">Total Balance</p>
+                    </div>
+                </div> -->
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./app.js"></script>
+    <script src="./auth.js"></script>
+    <script src="./navbar.js"></script>
+    <script src="./client.js"></script>
+    <script src="propojal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
