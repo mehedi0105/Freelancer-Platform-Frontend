@@ -34,8 +34,8 @@ const handleAddJob = (event) => {
 const handlemyPost = () => {
     const parent = document.getElementById("my-job")
     const comapany_name = localStorage.getItem("user_id")
-    if (parent.innerHTML != "") {
-        parent.innerHTML = "";
+    if (parent.innerHTML !"") {
+        parent.innerHTML ="";
     }
     fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
         .then((res) => res.json())
@@ -82,8 +82,8 @@ const handlePost = (id) => {
 const handlePassword = () => {
     // alert()
     const parent = document.getElementById("my-job")
-    if (parent.innerHTML != "") {
-        parent.innerHTML = "";
+    if (parent.innerHTML !="") {
+        parent.innerHTML ="";
     }
     const div = document.createElement("div");
     div.classList.add("container", "update-password-container", "w-50", "bg-white", "rounded", "p-3");
@@ -125,8 +125,8 @@ const handlemyOrder = () => {
         .then((res) => res.json())
         .then((data) => {
             const parent = document.getElementById("my-job");
-            if (parent.innerHTML != "") {
-                parent.innerHTML = "";
+            if (parent.innerHTML !="") {
+                parent.innerHTML ="";
             }
             data.forEach(element => {
                 fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
