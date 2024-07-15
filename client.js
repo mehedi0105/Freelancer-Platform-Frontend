@@ -34,7 +34,7 @@ const handleAddJob = (event) => {
 const handlemyPost = () => {
     const parent = document.getElementById("my-job")
     const comapany_name = localStorage.getItem("user_id")
-    if (parent.innerHTML !"") {
+    if (parent.innerHTML !="") {
         parent.innerHTML ="";
     }
     fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
