@@ -63,7 +63,7 @@ const handlemyPost = () => {
             console.error(error);
         });
 }
-handlemyPost()
+// handlemyPost()
 
 {/* <div class="card text-center">
     <div class="card-body">
