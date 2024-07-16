@@ -253,7 +253,7 @@ const DashBord = () => {
     }
     const div = document.createElement("div")
     div.innerHTML = `
-    <a href="./post.html" class="btn text-white fw-medium rounded p-2 ms-auto mb-4"
+    <a onclick="PostJob()" class="btn text-white fw-medium rounded p-2 ms-auto mb-4"
                     style="background-color: #22be0d; width: 120px;">
                     Post a
                     Job</a>
