@@ -12,7 +12,7 @@ fetch("navbar.html")
         if (token) {
             if (user_type == "Freelancer") {
                 nav_item.innerHTML += `
-                <a href="./find_job.html" class="nav-item nav-link">Find job</a>
+                <a href="./find_job.html" class="nav-item nav-link" style = "color: gray">Find job</a>
                 `
 
                 navbar_nav.innerHTML += `
@@ -36,7 +36,7 @@ fetch("navbar.html")
 
             } else {
                 nav_item.innerHTML += `
-                <a href="./post.html" class="nav-item nav-link">Add Job</a>
+                <a href="./post.html" class="nav-item nav-link" style = "color: gray">Add Job</a>
                 `
                 navbar_nav.innerHTML += `
                 <p class="m-auto">Welcome [${user_name}]</p>
