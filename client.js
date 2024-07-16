@@ -23,7 +23,7 @@ const handleAddJob = (event) => {
         .then((res) => res.json())
         .then((data) => {
             alert("Your Job Post Added Successfuly");
-            // window.location.href = "index.html";
+            window.location.href = "client.html";
             // console.log(data)
         })
         .catch((error) => {
@@ -370,3 +370,61 @@ const DashBordTable = (comapany_name) => {
 }
 
 DashBord()
+
+const PostJob = () => {
+    const parent = document.getElementById("my-job")
+    if (parent.innerHTML != "") {
+        parent.innerHTML = "";
+    }
+    parent.innerHTML = `
+    <div class="container w-50">
+        <div class="card">
+            <div class="card-header">
+                Job Info
+            </div>
+            <div class="card-body">
+                <form method="" id="job-post-form" onsubmit="handleAddJob(event)">
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" class="form-control p-3" name="jobTitle" id="jobTitle"
+                            placeholder="Title name here" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobType">Job Type</label>
+                        <select id="jobType" class="custom-select form-control p-3" name="jobType" required>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="catType">Job Type</label>
+                        <select id="catType" class="custom-select form-control p-3" name="catType" required>
+                            <option value="1">Software Engineering</option>
+                            <option value="2">Web Development</option>
+                            <option value="3">Mobile Development</option>
+                            <option value="4">Data Science</option>
+                            <option value="5">Artificial Intelligence</option>
+                            <option value="6">DevOps</option>
+                            <option value="7">Cyber Security</option>
+                            <option value="8">Cloud Computing</option>
+                            <option value="9">Networking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget *</label>
+                        <input type="number" class="form-control p-3" step="0.01" id="budget" name="budget"
+                            placeholder="Budget here" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea class="form-control" id="description" name="description" rows="5"
+                            placeholder="Description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    `
+}
