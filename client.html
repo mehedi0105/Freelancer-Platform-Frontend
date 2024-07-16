@@ -29,6 +29,15 @@
         </div>
     </div>
 
+    <script>
+
+        const handlePost = (id) => {
+
+            localStorage.setItem('job_id', id);
+            window.location.href = "job_details.html";
+
+        }
+    </script>
 
     <script src="./app.js"></script>
     <script src="./auth.js"></script>
