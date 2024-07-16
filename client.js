@@ -34,27 +34,59 @@ const handleAddJob = (event) => {
 const handlemyPost = () => {
     const parent = document.getElementById("my-job")
     const comapany_name = localStorage.getItem("user_id")
-    if (parent.innerHTML !="") {
-        parent.innerHTML ="";
+    if (parent.innerHTML != "") {
+        parent.innerHTML = `
+        <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div class="table-responsive">
+                    <table class="table mt-3">
+                        <thead style="background-color: rgba(34, 190, 13, 0.2);">
+                            <tr>
+                                <th scope="col">Project Name</th>
+                                <th scope="col">Budget</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="my-jobs-dashbord">
+                                
+                                <!-- Additional rows go here -->
+                                </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                <!-- Other tab panes go here -->
+                                </div>
+                                `;
     }
+    const parent1 = document.getElementById("my-jobs-dashbord")
     fetch("https://freelancer-platform-api.onrender.com/buyer/job_list/")
         .then((res) => res.json())
         .then((data) => {
             data.forEach(job => {
                 if (job.comapany_name == comapany_name) {
-
-                    const div = document.createElement("div");
-                    div.classList.add("card", "col-6", 'd-card');
-                    // div.onclick.add("handlePost()");
-                    div.innerHTML = `
-                        <div class="card-body" onclick="handlePost('${job.id}')" style="cursor:pointer">
-                        <p class="text-dark"><small>Posted: ${new Date(job.created_at).toLocaleDateString()}</small></p>
-                            <h5 class="card-title">${job.title}</h5>
-                            <p class="card-text">Budget: ${job.salary}</p>
-                            <p class="card-text">${job.description.slice(0, 450)}...[click & veiw details]</p>
-                        </div>
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>
+                            <div class="d-flex align-items-center">
+                                 <img src="assets/img/dashboard/projects/1.png" alt="" class="rounded-circle"
+                                        width="40">
+                                 <p class="ml-3 mb-0">${job.title}</p>
+                            </div>
+                                </td>
+                                <td>${job.salary}$</td>
+                                <td><span class="status-badge">Active</span></td>
+                                <td>${new Date(job.created_at).toLocaleDateString()}</td>
+                                <td>
+                            <div class="d-flex justify-content-end">
+                                <a onclick="handlePost('${job.id}')" class="btn btn-outline-success me-2">
+                                         View details
+                                </a>
+                            </div>
+                        </td>
                     `
-                    parent.appendChild(div)
+                    parent1.appendChild(tr)
 
                 }
             });
